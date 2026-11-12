@@ -1,0 +1,33 @@
+
+module tb_full_adder_8bit;
+
+    reg [7:0] A, B;
+    reg Cin;
+    wire [7:0] Sum;
+    wire Cout;
+
+    full_adder_8bit uut (
+        .A(A),
+        .B(B),
+        .Cin(Cin),
+        .Sum(Sum),
+        .Cout(Cout)
+    );
+
+    initial begin
+        $monitor("A=%d B=%d Cin=%b Sum=%d Cout=%b",
+                  A, B, Cin, Sum, Cout);
+
+        A = 8'd10; B = 8'd20; Cin = 0;
+        #10;
+
+        A = 8'd100; B = 8'd50; Cin = 1;
+        #10;
+
+        A = 8'd255; B = 8'd1; Cin = 0;
+        #10;
+
+        $finish;
+    end
+
+endmodule
